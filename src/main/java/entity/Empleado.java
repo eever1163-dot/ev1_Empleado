@@ -18,4 +18,5 @@ public class Empleado {
 	private double salario;
 	private LocalDate fechaContratacion;
 	private boolean activo;
+	private Categoria categoria;
 }

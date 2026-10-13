@@ -54,10 +54,18 @@
 					<div class="invalid-feedback">Ingrese el cargo</div>
 				</div>
 				<div class="col-4">
+					<label for="categoria">Categoría</label>
+					<select class="form-control" id="categoria" name="categoria" >
+						<option>[Seleccione]</option>
+					</select>
+				</div>
+				<div class="col-4">
 					<label for="salario">Salario</label>
 					<input type="number" step="0.01" class="form-control" id="salario" name="salario" placeholder="Ingrese el salario" required>
 					<div class="invalid-feedback">Ingrese el salario</div>
 				</div>
+			</div>
+			<div class="row" style="margin-top: 2%;">
 				<div class="col-4">
 					<label for="fecContratacion">Fecha de Contratación</label>
 					<input type="date" class="form-control" id="fecContratacion" name="fecContratacion" required>
@@ -70,6 +78,23 @@
 		</form>
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function () {
+			$.ajax({
+				url: 'cargaComboCategoriaAlias', // URL del servlet para obtener categorías
+				type: 'GET',
+				success: function (data) {
+					console.log('Categorías cargadas:', data);
+					var comboBox = $('#categoria');
+					data.forEach(function (obj) {
+						comboBox.append('<option value="' + obj.idCategoria + '">' + obj.descripcion + '</option>');
+					});
+				},
+				error: function (xhr, status, error) {
+					console.error('Error al cargar categorías:', error);
+				}
+			});
+		});
+
 		$("#btnRegistrar").click(function(e) {
 			console.log("click en registrar");
 			e.preventDefault(); //Evita que el formulario se envíe automáticamente

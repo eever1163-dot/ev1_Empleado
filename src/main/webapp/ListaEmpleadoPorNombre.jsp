@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,15 +37,16 @@
             <div class="col-12">
                 <table class="table table-striped" id="id_table">
                     <thead>
-                        <tr><th>CÛdigo</th>
+                        <tr><th>C√≥digo</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Documento</th>
                             <th>Correo</th>
-                            <th>TelÈfono</th>
+                            <th>Tel√©fono</th>
                             <th>Cargo</th>
+                            <th>Categor√≠a</th>
                             <th>Salario</th>
-                            <th>Fecha de ContrataciÛn</th>
+                            <th>Fecha de Contrataci√≥n</th>
                             <th>Activo</th>
                         </tr>
                     </thead>
@@ -104,12 +106,15 @@ function agregarGrilla(lista){
 				{data: "correo", className:'text-center'},
 				{data: "telefono", className:'text-center'},
 				{data: "cargo", className:'text-center'},
+				{data: function(row, type, val, meta){
+					return row.categoria.descripcion;
+				},className:'text-center'},
 				{data: "salario", className:'text-center'},
 				{data: function(row, type, val, meta){
 					return row.fechaContratacion.day + "/" + row.fechaContratacion.month + "/" + row.fechaContratacion.year;
 				},className:'text-center'},
 				{data: function(row, type, val, meta){
-					return row.activo ? "SÌ" : "No";
+					return row.activo ? "S√≠" : "No";
 				},className:'text-center'},
 			]
 	    });
